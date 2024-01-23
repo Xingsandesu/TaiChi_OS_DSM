@@ -43,7 +43,7 @@
 
 - 或者
 ```Shell
-curl -sSL -o get-taichi.sh https://raw.githubusercontent.com/Xingsandesu/TaiChi_OS/master/.shell/get-taichi.sh && bash get-taichi.sh
+curl -sSL -o get-taichi.sh https://raw.githubusercontent.com/Xingsandesu/TaiChi_OS_DSM/main/.shell/get-taichi.sh && bash get-taichi.sh
 ```
 
 ## 扩展: 软件源私有部署
@@ -56,7 +56,7 @@ https://app.kookoo.top
 
 ### 手动部署
 
-1. 创建目录
+1. 创建目录(使用自己的目录)
 
     ```bash
     mkdir /root/taichisource
