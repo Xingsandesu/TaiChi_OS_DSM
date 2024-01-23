@@ -1,0 +1,522 @@
+:root {
+    --main-bg-color: #F7F7F7;
+    --main-font-color: #000000;
+    --secondary-font-color: #888888;
+    --border-color: #dfdfdf;
+    --main-font-size: 14px;
+    --secondary-font-size: 12px;
+    --bold-font-weight: bold;
+    --normal-font-weight: normal;
+}
+
+.fullscreen-blur {
+    position: fixed; /* 使元素固定在屏幕上 */
+    top: 0; /* 从屏幕顶部开始 */
+    left: 0; /* 从屏幕左侧开始 */
+    width: 100%; /* 覆盖全宽 */
+    height: 100%; /* 覆盖全高 */
+    backdrop-filter: blur(10px); /* 添加毛玻璃效果 */
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: transparent;
+    backdrop-filter: blur(10px); /* 添加毛玻璃效果 */
+}
+
+@media (max-width: 768px) {
+    .responsive-hide {
+        display: none !important;
+    }
+}
+
+@media screen and (max-width: 1243px) {
+    #systemVersion {
+        display: none;
+    }
+}
+
+.container {
+    background-color: transparent;
+    margin: 0;
+}
+
+.container-header {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+    height: 4rem;
+    padding-left: 10px;
+}
+
+.container-body {
+    display: flex;
+    border-top: 0px solid #dfdfdf;
+    padding: 20px 10px 0 10px;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.container div {
+    display: flex;
+}
+
+.item-block {
+    border: 0px solid #dfdfdf;
+    flex-direction: column;
+    height: 160px;
+    width: 160px;
+    margin-bottom: 20px;
+    margin-right: 10px;
+    border-radius: 30px;
+    position: relative; /* 添加这一行 */
+}
+
+a:link {
+    color: #000000;
+    text-decoration: none;
+}
+
+a:visited {
+    color: #000000;
+    text-decoration: none;
+}
+
+.item-top {
+    height: 80px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute; /* 添加这一行 */
+    top: 50%; /* 添加这一行 */
+    left: 50%; /* 添加这一行 */
+    transform: translate(-50%, -45%); /* 添加这一行 */
+}
+
+.item-logo {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px; /* 添加这一行 */
+}
+
+.item-logo img {
+    width: 4rem;
+    height: 4rem;
+}
+
+.item-body {
+    flex-direction: column;
+    width: 100%; /* 修改这一行 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    font-size: 0.8em;
+    font-weight: bold;
+    padding-bottom: 10px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-size: 12px; /* 根据视口宽度设置字体大小 */
+    white-space: nowrap; 
+    word-break: keep-all;
+}
+
+.divider {
+    height: 20px;
+    width: 1px;
+    background-color: #dfdfdf;
+}
+
+.row {
+    margin: 5px;
+    padding: 5px;
+
+}
+
+.col,
+.col-md-3,
+.col-md-9,
+.col-md-12,
+.col-md-4,
+.col-md-6 {
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    background-color: rgba(248, 249, 250, 0.7); /* 添加透明效果 */
+    border: 0;
+    border-radius: 30px;
+    backdrop-filter: blur(10px); /* 添加毛玻璃效果 */
+}
+
+#md-3, #md-9 {
+    overflow: auto;
+    height: 90vh; /* 或者你需要的高度 */
+}
+
+/* 定义滚动条的宽度 */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+/* 定义滚动条的背景 */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* 定义滚动条的滑块 */
+::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+}
+
+/* 定义滚动条的滑块：鼠标悬停 */
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+#tubiao1, #tubiao2 {
+    padding: 10px;
+    margin: 0;
+}
+
+#md-3, #md-9 {
+    background-color: transparent;
+}
+
+#body1 {
+    padding: 0;
+    border: 0;
+    background-color: #333333;
+}
+
+#body2 {
+    padding: 0;
+    background-color: transparent;
+    border-radius: 20px;
+}
+
+.centered-label {
+    position: absolute;
+    top: 53%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.centered-label .usage {
+    font-weight: var(--bold-font-weight);
+    font-size: 1.5vw;
+    height: auto;
+    width: 100%;
+}
+
+.centered-label .type {
+    font-weight: var(--bold-font-weight);
+    font-size: 1vw;
+    height: auto;
+    width: 100%;
+    color: var(--secondary-font-color);
+}
+
+
+#systemStatusTitle,
+#uploadLabel,
+#downloadLabel {
+    color: #343a40;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.usage-block {
+    border: 1px solid var(--border-color);
+    flex-direction: column;
+    height: 160px;
+    width: 20rem;
+    margin-bottom: 20px;
+    margin-right: 10px;
+}
+
+#cpuUsageBlock,
+#memoryUsageBlock,
+#diskUsageBlock {
+    opacity: 0;
+    transition: opacity 2s ease-out;
+    width: 70%;
+    height: auto;
+    position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    border: none;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#NETWORKchart,
+#DiskIOChart,
+#CPUchart,
+#RAMchart {
+    width: 100%;
+    height: 15rem;
+    padding: 10px;
+    margin-bottom: 0;
+}
+
+.usage-area {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.navbar {
+    padding: 0.5rem 1rem; /* 调整 Navbar 的内边距以改变其高度 */
+}
+
+.nav-link i {
+    font-size: 1.5rem; /* 调整图标大小 */
+    margin-right: 20px; /* 在图标之间添加间隙 */
+}
+
+.nav-link {
+    color: #333; /* 改变链接颜色 */
+    transition: color 0.3s ease; /* 添加颜色过渡效果 */
+}
+
+.nav-link:hover {
+    color: #007bff; /* 改变鼠标悬停时的链接颜色 */
+}
+
+
+#systemStatusTitle > .nav-link {
+    margin-right: 20px; /* 在每个系统状态元素之间添加20px的间隙 */
+}
+
+.outer::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+}
+
+.outer {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+#prev, #next {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    border: 2px solid rgba(0, 0, 0, 0); /* 透明度设置为20% */
+    background: transparent;
+}
+
+#prev {
+    right: 90px; /* 从60px增加到80px */
+}
+
+#next {
+    right: 50px; /* 从20px增加到40px */
+}
+
+#prev i, #next i {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 0%);
+}
+
+/* 设置搜索框的边框颜色和圆角 */
+.input-group {
+    border: 0;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+/* 设置搜索图标的颜色 */
+#searchEngineIcon {
+    background-color: transparent;
+    border-right: transparent;
+}
+
+/* 设置搜索输入框的边框 */
+.form-control {
+    border: none;
+    box-shadow: none;
+    background-color: transparent;
+}
+
+.form-control:focus {
+    background-color: transparent;
+}
+
+/* 设置搜索按钮的边框为透明 */
+.input-group-text {
+    border: none;
+}
+
+#status-display {
+    text-align: center;
+    padding: 20px;
+}
+
+#dateLabel {
+    font-size: 1rem;
+}
+
+#timeLabel {
+    font-size: 2.5rem;
+}
+
+#containers {
+    padding: 0;
+    margin: 0;
+}
+
+.card {
+    border-radius: 0;
+    margin: 0;
+    border: 0;
+    width: auto;
+    height: auto;
+    background-color: rgba(248, 249, 250, 0.7); /* 添加透明效果 */
+    backdrop-filter: blur(10px); /* 添加毛玻璃效果 */
+    border-radius: 25px; /* 添加圆角 */
+}
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+}
+
+.card-custom {
+    width: auto;
+    height: 230px;
+}
+
+.card-body-custom {
+    overflow: auto;
+    height: auto;
+}
+
+.btn-primary {
+    background-color: rgba(200, 206, 235, 0.5); /* 天蓝色半透明背景 */
+    border: none;
+    border-radius: 25px;
+    padding: 8px 28px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: black;
+    backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease-in-out;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.btn-primary:hover {
+    background-color: rgba(135, 206, 235, 0.7); /* 鼠标悬停时背景更透明 */
+    color: white; /* 鼠标悬停时字体颜色变为白色 */
+}
+
+.card-title {
+    padding: 0px 0px;
+    margin: 0;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.card-text {
+    padding: 10px 0px;
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.8; /* 设置行间距 */
+}
+
+.btn-primary:nth-child(1) {
+    bottom: 20px;
+}
+
+.btn-primary:nth-child(2) {
+    bottom: 70px;
+}
+
+.btn-primary:nth-child(3) {
+    bottom: 120px;
+}
+
+.btn-primary:nth-child(4) {
+    bottom: 170px;
+}
+
+/* 模态框的样式 */
+.modal {
+    display: none; /* 默认隐藏 */
+    position: fixed; /* 固定位置 */
+    z-index: 1; /* 在其他元素之上 */
+    left: 0;
+    top: 0;
+    width: 100%; /* 宽度和高度覆盖整个屏幕 */
+    height: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* 半透明背景 */
+}
+
+/* 模态框内容的样式 */
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    background-color: #000; /* 黑色背景 */
+    margin: auto; /* 自动外边距 */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* 固定宽度 */
+    height: 80%; /* 固定高度 */
+    color: #fff; /* 白色字体 */
+    position: fixed; /* 固定位置 */
+    top: 50%; /* 顶部位置为50% */
+    left: 50%; /* 左侧位置为50% */
+    transform: translate(-50%, -50%); /* 使用transform属性将元素的中心点移动到其父元素的中心 */
+    border-radius: 20px; /* 添加圆角 */
+}
+
+#commandInput {
+    margin-top: auto;
+    margin-bottom: 10px;
+    border: 1px solid #aaa; /* 设置边框样式 */
+    padding: 5px; /* 添加内边距 */
+    background-color: #333; /* 设置背景颜色 */
+    color: #fff; /* 设置字体颜色 */
+    border-radius: 20px; /* 添加圆角 */
+}
+
+/* 关闭按钮的样式 */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}

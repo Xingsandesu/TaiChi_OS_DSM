@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title> TaiChi OS WebSSH </title>
+    <link href="/static/img/favicon.png" rel="icon" type="image/png">
+    <link href="/static/css/public/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/public/xterm.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/public/fullscreen.min.css" rel="stylesheet" type="text/css"/>
+    <style>
+        .row {
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .btn {
+            margin-top: 15px;
+        }
+
+        .btn-danger {
+            margin-left: 5px;
+        }
+
+        .navbar {
+            padding: 0.5rem 1rem; /* 调整 Navbar 的内边距以改变其高度 */
+        }
+
+        .nav-link i {
+            font-size: 2rem; /* 调整图标大小 */
+            margin-right: 20px; /* 在图标之间添加间隙 */
+        }
+
+        .nav-link {
+            color: #333; /* 改变链接颜色 */
+            transition: color 0.3s ease; /* 添加颜色过渡效果 */
+        }
+
+        .nav-link:hover {
+            color: #007bff; /* 改变鼠标悬停时的链接颜色 */
+        }
+    </style>
+</head>
+<body style="background-color: #333; width: auto; height: auto;">
+<!-- Navbar -->
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand d-none d-lg-block" href="#">WebSSH</a>
+        <div class="d-flex justify-content-center">
+            <!-- 主页图标链接 -->
+            <a class="nav-link me-2" href="/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-house-door" viewBox="0 0 16 16">
+                    <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
+                </svg>
+            </a>
+            <!-- 应用图标链接 -->
+            <a class="nav-link me-2" href="/install">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bag"
+                     viewBox="0 0 16 16">
+                    <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1m3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1z"/>
+                </svg>
+            </a>
+            <!-- 仪表台图标链接 -->
+            <a class="nav-link" href="/monitor">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-arrow-down-up" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M11.5 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L11 2.707V14.5a.5.5 0 0 0 .5.5m-7-14a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L4 13.293V1.5a.5.5 0 0 1 .5-.5"/>
+                </svg>
+            </a>
+            <!-- 容器图标链接 -->
+            <a class="nav-link me-2" href="/containers">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-boxes"
+                     viewBox="0 0 16 16">
+                    <path d="M7.752.066a.5.5 0 0 1 .496 0l3.75 2.143a.5.5 0 0 1 .252.434v3.995l3.498 2A.5.5 0 0 1 16 9.07v4.286a.5.5 0 0 1-.252.434l-3.75 2.143a.5.5 0 0 1-.496 0l-3.502-2-3.502 2.001a.5.5 0 0 1-.496 0l-3.75-2.143A.5.5 0 0 1 0 13.357V9.071a.5.5 0 0 1 .252-.434L3.75 6.638V2.643a.5.5 0 0 1 .252-.434L7.752.066ZM4.25 7.504 1.508 9.071l2.742 1.567 2.742-1.567L4.25 7.504ZM7.5 9.933l-2.75 1.571v3.134l2.75-1.571V9.933Zm1 3.134 2.75 1.571v-3.134L8.5 9.933v3.134Zm.508-3.996 2.742 1.567 2.742-1.567-2.742-1.567-2.742 1.567Zm2.242-2.433V3.504L8.5 5.076V8.21l2.75-1.572ZM7.5 8.21V5.076L4.75 3.504v3.134L7.5 8.21ZM5.258 2.643 8 4.21l2.742-1.567L8 1.076 5.258 2.643ZM15 9.933l-2.75 1.571v3.134L15 13.067V9.933ZM3.75 14.638v-3.134L1 9.933v3.134l2.75 1.571Z"/>
+                </svg>
+            </a>
+            <!-- 文件夹图标链接 -->
+            <a class="nav-link me-2" href="/files">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-folder"
+                     viewBox="0 0 16 16">
+                    <path d="M.54 3.87.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.826a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31zM2.19 4a1 1 0 0 0-.996 1.09l.637 7a1 1 0 0 0 .995.91h10.348a1 1 0 0 0 .995-.91l.637-7A1 1 0 0 0 13.81 4H2.19zm4.69-1.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707z"/>
+                </svg>
+            </a>
+            <!-- Shell图标链接 -->
+            <a class="nav-link me-2" href="/webssh/">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-terminal" viewBox="0 0 16 16">
+                    <path d="M6 9a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3A.5.5 0 0 1 6 9M3.854 4.146a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z"/>
+                    <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2zm12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1z"/>
+                </svg>
+            </a>
+            <a class="nav-link" href="/logout">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                    <path fill-rule="evenodd"
+                          d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</nav>
+<!-- Navbar End -->
+<div style="display: flex; justify-content: center; align-items: center; height: auto; margin: 0; overflow:auto;">
+    <div id="waiter" style="display: none; transform: scale(1.2);"> 连接中 ...</div>
+    <div class="container form-container"
+         style="display: none; width: 100%; max-width: 720px; padding: 24px; background-color: #F8F9FA; border-radius: 10px; box-sizing: border-box; position: relative; left: 50%; transform: translateX(-50%);">
+        <form id="connect" action="" method="post" enctype="multipart/form-data"{% if debug %} novalidate{% end %}>
+            <div class="row mt-3">
+                <div class="col">
+                    <label for="Hostname" style="font-weight: bold; margin-bottom: 5px;">域名</label>
+                    <input class="form-control" type="text" id="hostname" name="hostname" value="" required
+                           style="border: 1px solid #ccc; border-radius: 4px; padding: 10px; font-size: 16px; color: #333; width: 100%; box-sizing: border-box; margin-bottom: 20px;">
+                </div>
+                <div class="col">
+                    <label for="Port" style="font-weight: bold; margin-bottom: 5px;">端口</label>
+                    <input class="form-control" type="number" id="port" name="port" placeholder="22" value="" min=1
+                           max=65535
+                           style="border: 1px solid #ccc; border-radius: 4px; padding: 10px; font-size: 16px; color: #333; width: 100%; box-sizing: border-box; margin-bottom: 20px;">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <label for="Username" style="font-weight: bold; margin-bottom: 5px;">用户名</label>
+                    <input class="form-control" type="text" id="username" name="username" value="" required
+                           style="border: 1px solid #ccc; border-radius: 4px; padding: 10px; font-size: 16px; color: #333; width: 100%; box-sizing: border-box; margin-bottom: 20px;">
+                </div>
+                <div class="col">
+                    <label for="Password" style="font-weight: bold; margin-bottom: 5px;">密码</label>
+                    <input class="form-control" type="password" id="password" name="password" value=""
+                           style="border: 1px solid #ccc; border-radius: 4px; padding: 10px; font-size: 16px; color: #333; width: 100%; box-sizing: border-box; margin-bottom: 20px;">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                    <label for="Username" style="font-weight: bold; margin-bottom: 5px;">私钥</label>
+                    <input class="form-control" type="file" id="privatekey" name="privatekey" value=""
+                           style="border: 1px solid #ccc; border-radius: 4px; padding: 10px; font-size: 16px; color: #333; width: 100%; box-sizing: border-box; margin-bottom: 30px; height: 50px;">
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col">
+                </div>
+            </div>
+            <input type="hidden" id="term" name="term" value="xterm-256color">
+            {% module xsrf_form_html() %}
+            <button type="submit" class="btn btn-primary mt-3"
+                    style="border: none; border-radius: 4px; padding: 10px 20px; font-size: 16px; color: #fff; cursor: pointer; background-color: #007bff;">
+                连接
+            </button>
+            <button type="reset" class="btn btn-danger mt-3"
+                    style="border: none; border-radius: 4px; padding: 10px 20px; font-size: 16px; color: #fff; cursor: pointer; background-color: #dc3545;">
+                重置
+            </button>
+        </form>
+    </div>
+
+
+
+<div class="container">
+    <div id="status" style="color: red;"></div>
+    <div id="terminal"></div>
+</div>
+
+<script src="/static/js/public/jquery.min.js"></script>
+<script src="/static/js/public/popper.min.js"></script>
+<script src="/static/js/public/bootstrap.min.js"></script>
+<script src="/static/js/public/xterm.min.js"></script>
+<script src="/static/js/public/xterm-addon-fit.min.js"></script>
+<script src="/static/js/personal/webssh.js"></script>
+</div>
+</body>
+</html>
