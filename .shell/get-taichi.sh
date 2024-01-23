@@ -893,8 +893,9 @@ docker_install_taichi() {
 	docker run -itd  \
 		-p ${host_port}:80 \
 		-v /var/run/docker.sock:/var/run/docker.sock  \
-		--mount type=bind,source=/volume1/docker/taichi/config.json,target=/taichi_os/config.json \
-		--mount type=bind,source=/volume1/docker/taichi/data.db,target=/taichi_os/data.db \
+		-v /volume1/docker/taichi/config.json:/taichi_os/config.json \
+		-v /volume1/docker/taichi/data.db:/taichi_os/data.db \
+		-v /volume1/docker/taichi_app:/volume1/docker/taichi_app \
 		--name taichios \
 		--privileged \
 		--restart=always \
@@ -938,12 +939,14 @@ update_taichi() {
 	docker run -itd  \
 		-p ${host_port}:80 \
 		-v /var/run/docker.sock:/var/run/docker.sock  \
-		--mount type=bind,source=/volume1/docker/taichi/config.json,target=/taichi_os/config.json \
-		--mount type=bind,source=/volume1/docker/taichi/data.db,target=/taichi_os/data.db \
+		-v /volume1/docker/taichi/config.json:/taichi_os/config.json \
+		-v /volume1/docker/taichi/data.db:/taichi_os/data.db \
+		-v /volume1/docker/taichi_app:/volume1/docker/taichi_app \
 		--name taichios \
 		--privileged \
 		--restart=always \
 		fushin/taichiosdsm
+
 	fi
 }
 
@@ -1060,15 +1063,17 @@ case $operation in
 		read new_port
 		docker stop taichios
 		docker rm taichios
-		docker run -itd  \
-      -p ${new_port}:80 \
-      -v /var/run/docker.sock:/var/run/docker.sock  \
-      --mount type=bind,source=/volume1/docker/taichi/config.json,target=/taichi_os/config.json \
-      --mount type=bind,source=/volume1/docker/taichi/data.db,target=/taichi_os/data.db \
-      --name taichios \
-      --privileged \
-      --restart=always \
-      fushin/taichiosdsm
+	  docker run -itd  \
+		  -p ${new_port}:80 \
+		  -v /var/run/docker.sock:/var/run/docker.sock  \
+		  -v /volume1/docker/taichi/config.json:/taichi_os/config.json \
+		  -v /volume1/docker/taichi/data.db:/taichi_os/data.db \
+		  -v /volume1/docker/taichi_app:/volume1/docker/taichi_app \
+		  --name taichios \
+		  --privileged \
+		  --restart=always \
+		  fushin/taichiosdsm
+
 			echo "Docker 端口更新完毕"
 		;;
 	8)
